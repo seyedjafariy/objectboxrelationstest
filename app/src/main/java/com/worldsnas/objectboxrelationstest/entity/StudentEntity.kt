@@ -7,16 +7,15 @@ import io.objectbox.annotation.NameInDb
 import io.objectbox.relation.ToOne
 
 @Entity
-class StudentEntity {
-
-    @Id(assignable = true)
-    var id : Long = 0
-    @NameInDb("name")
-    var name : String = ""
-    @NameInDb("address")
-    var address : String = ""
-    @NameInDb("phone")
-    var phone : Int = 0
-
-    lateinit var teacher : ToOne<TeacherEntity>
+data class StudentEntity(
+        @Id(assignable = true)
+        var id: Long = 0,
+        @NameInDb("name")
+        var name: String = "",
+        @NameInDb("address")
+        var address: String = "",
+        @NameInDb("phone")
+        var phone: Int = 0
+) {
+    lateinit var teacher: ToOne<TeacherEntity>
 }

@@ -32,10 +32,10 @@ dependencies {
     testImplementation 'junit:junit:4.12'
     androidTestImplementation 'com.android.support.test:runner:1.0.2'
     androidTestImplementation 'com.android.support.test.espresso:espresso-core:3.0.2'
-    implementation "io.objectbox:objectbox-java-api:2.1.0"
-    implementation "io.objectbox:objectbox-kotlin:2.1.0"
-//    implementation project(':objectbox-rxjava')
-    debugImplementation "io.objectbox:objectbox-android-objectbrowser:2.1.0"
-    releaseImplementation "io.objectbox:objectbox-android:2.1.0"
+    implementation "io.objectbox:objectbox-java-api:2.2.0"
+    implementation "io.objectbox:objectbox-kotlin:2.2.0"
+    implementation "io.objectbox:objectbox-rxjava:2.2.0"
+    debugImplementation "io.objectbox:objectbox-android-objectbrowser:2.2.0"
+    releaseImplementation "io.objectbox:objectbox-android:2.2.0"
 }
 apply plugin: 'io.objectbox'

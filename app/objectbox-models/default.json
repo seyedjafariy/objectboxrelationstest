@@ -5,7 +5,7 @@
   "entities": [
     {
       "id": "1:4942977493502729983",
-      "lastPropertyId": "5:2165474176942905057",
+      "lastPropertyId": "8:4672460664773623811",
       "name": "StudentEntity",
       "properties": [
         {
@@ -25,8 +25,8 @@
           "name": "phone"
         },
         {
-          "id": "5:2165474176942905057",
-          "indexId": "1:1376885232046564536",
+          "id": "8:4672460664773623811",
+          "indexId": "4:5270227992180509090",
           "name": "teacherId"
         }
       ],
@@ -46,23 +46,29 @@
           "name": "CACHE_TIME"
         }
       ],
-      "relations": [
-        {
-          "id": "1:4803539795529669110",
-          "name": "students"
-        }
-      ]
+      "relations": []
     }
   ],
   "lastEntityId": "2:1636424148016824736",
-  "lastIndexId": "1:1376885232046564536",
-  "lastRelationId": "1:4803539795529669110",
+  "lastIndexId": "4:5270227992180509090",
+  "lastRelationId": "2:7768453466472245689",
   "lastSequenceId": "0:0",
   "modelVersion": 4,
   "modelVersionParserMinimum": 4,
   "retiredEntityUids": [],
-  "retiredIndexUids": [],
-  "retiredPropertyUids": [],
-  "retiredRelationUids": [],
+  "retiredIndexUids": [
+    1376885232046564536,
+    9204547779020112432,
+    2433199824195514620
+  ],
+  "retiredPropertyUids": [
+    2165474176942905057,
+    7576779969779095348,
+    5969779550346632227
+  ],
+  "retiredRelationUids": [
+    4803539795529669110,
+    7768453466472245689
+  ],
   "version": 1
 }

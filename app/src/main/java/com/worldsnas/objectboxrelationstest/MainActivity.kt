@@ -2,8 +2,7 @@ package com.worldsnas.objectboxrelationstest
 
 import android.os.Bundle
 import android.support.design.widget.Snackbar
-import android.support.v7.app.AppCompatActivity;
-import android.system.Os.link
+import android.support.v7.app.AppCompatActivity
 import android.util.Log
 import android.view.Menu
 import android.view.MenuItem
@@ -13,7 +12,7 @@ import com.worldsnas.objectboxrelationstest.entity.TeacherEntity
 import com.worldsnas.objectboxrelationstest.entity.TeacherEntity_
 import io.objectbox.kotlin.boxFor
 import io.objectbox.kotlin.query
-
+import io.objectbox.rx.RxQuery
 import kotlinx.android.synthetic.main.activity_main.*
 import java.util.*
 
@@ -27,6 +26,21 @@ class MainActivity : AppCompatActivity() {
         fab.setOnClickListener { view ->
             Snackbar.make(view, "Replace with your own action", Snackbar.LENGTH_LONG)
                     .setAction("Action", null).show()
+//            val studentBox = box.boxFor<StudentEntity>()
+//            studentBox.put(createFakeStudents(20))
+//            studentBox.closeThreadResources()
+
+            val teacherBox = box.boxFor<TeacherEntity>()
+            var teacher = teacherBox.get(100)
+            if (teacher == null){
+                teacher = createFakeTeacher()
+            }
+            teacher.copy(cache = System.currentTimeMillis())
+            teacherBox.put(teacher)
+
+            teacher.students.addAll(createFakeStudents(20))
+            teacher.students.applyChangesToDb()
+
         }
 
 
@@ -36,10 +50,15 @@ class MainActivity : AppCompatActivity() {
 
         teacherBox.put(teacher)
 
-        teacher.students.addAll(createFakeStudents())
+        teacher.students.addAll(createFakeStudents(1))
         teacher.students.applyChangesToDb()
 
         teacherBox.put(teacher)
+
+        val studentBox = box.boxFor<StudentEntity>()
+        studentBox.put(createFakeStudents(10))
+        studentBox.closeThreadResources()
+
 
         teacherBox.closeThreadResources()
 
@@ -62,10 +81,10 @@ class MainActivity : AppCompatActivity() {
         }
     }
 
-    private fun createFakeStudents() : List<StudentEntity>{
+    private fun createFakeStudents(startId : Int) : List<StudentEntity>{
         val students = LinkedList<StudentEntity>()
 
-        for (i in 0 until 5){
+        for (i in startId until startId + 5){
             val s = StudentEntity()
             val id =i*100L
             s.id = id
@@ -88,12 +107,19 @@ class MainActivity : AppCompatActivity() {
 
         val query = studentBox.query {
             link(StudentEntity_.teacher).equal(TeacherEntity_.id, 100)
+            eager(StudentEntity_.teacher)
         }
 
-        val students = query.find()
+        val dis = RxQuery.observable(query)
+                .subscribe{students ->
+                    for (student in students) {
+                        Log.d("MainActivity", student.toString())
+                        Log.d("MainActivity", "target eager? ${student.teacher.isResolvedAndNotNull}")
+                    }
+                }
 
-        for (student in students) {
-            Log.d("MainActivity", student.toString())
-        }
+
+
+
     }
 }
