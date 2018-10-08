@@ -18,6 +18,5 @@ class StudentEntity {
     @NameInDb("phone")
     var phone : Int = 0
 
-    @Backlink(to="students")
     lateinit var teacher : ToOne<TeacherEntity>
 }

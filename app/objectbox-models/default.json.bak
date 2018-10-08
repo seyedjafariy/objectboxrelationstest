@@ -46,17 +46,12 @@
           "name": "CACHE_TIME"
         }
       ],
-      "relations": [
-        {
-          "id": "1:4803539795529669110",
-          "name": "students"
-        }
-      ]
+      "relations": []
     }
   ],
   "lastEntityId": "2:1636424148016824736",
   "lastIndexId": "1:1376885232046564536",
-  "lastRelationId": "1:4803539795529669110",
+  "lastRelationId": "0:0",
   "lastSequenceId": "0:0",
   "modelVersion": 4,
   "modelVersionParserMinimum": 4,
